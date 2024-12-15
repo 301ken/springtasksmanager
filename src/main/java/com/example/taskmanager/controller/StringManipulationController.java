@@ -1,33 +1,26 @@
-package com.example.taskmanager.service;
+package com.example.taskmanager.controller;
 
-import org.springframework.stereotype.Service;
 
-@Service
-public class StringManipulationService {
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-    public String reverseString(String input) {
+@RestController
+@RequestMapping("/stringsmanip")
+public class StringManipulationController {
+    @GetMapping("/reversedstring")
+    public String reversedstring(@RequestParam String input){
         return new StringBuilder(input).reverse().toString();
     }
 
-    public long countVowels(String input) {
-        return input.chars()
-                .filter(ch -> "AEIOUaeiou".indexOf(ch) >= 0)
-                .count();
+    @GetMapping("/vowels")
+    public int vowels(@RequestParam String input){
+        return (int) input.toLowerCase().chars().filter(c -> "aeiou".indexOf(c) != -1).count();
     }
 
-    public long countConsonants(String input) {
-        return input.chars()
-                .filter(ch -> Character.isLetter(ch) && "AEIOUaeiou".indexOf(ch) < 0)
-                .count();
-    }
-
-    public String convertCase(String input) {
-        char[] chars = input.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            chars[i] = Character.isUpperCase(chars[i])
-                    ? Character.toLowerCase(chars[i])
-                    : Character.toUpperCase(chars[i]);
-        }
-        return new String(chars);
+    @GetMapping("/upperstring")
+    public String upperstring(@RequestParam String input){
+        return input.toUpperCase();
     }
 }

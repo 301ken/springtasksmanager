@@ -1,17 +1,10 @@
 package com.example.taskmanager.model;
 
+
 public class Task {
     private int id;
     private String name;
-    private String description;
-
-    public Task() {}
-
-    public Task(int id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
+    private boolean completed;
 
     public int getId() {
         return id;
@@ -29,11 +22,11 @@ public class Task {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public boolean isCompleted() {
+        return completed;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }
